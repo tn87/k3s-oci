@@ -81,7 +81,7 @@ resource "oci_core_network_security_group" "lb_to_instances_http" {
 }
 
 resource "oci_core_network_security_group_security_rule" "nsg_to_instances_http" {
-  network_security_group_id = oci_core_network_security_group.lb_to_instances_http.id
+  network_security_group_id = oci_core_network_security_group.lb_to_instances_kubeapi.id
   direction                 = "INGRESS"
   protocol                  = 6 # tcp
 
@@ -100,7 +100,7 @@ resource "oci_core_network_security_group_security_rule" "nsg_to_instances_http"
 }
 
 resource "oci_core_network_security_group_security_rule" "nsg_to_instances_https" {
-  network_security_group_id = oci_core_network_security_group.lb_to_instances_http.id
+  network_security_group_id = oci_core_network_security_group.lb_to_instances_kubeapi.id
   direction                 = "INGRESS"
   protocol                  = 6 # tcp
 

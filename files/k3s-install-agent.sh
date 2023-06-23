@@ -122,7 +122,7 @@ K3S_VERSION="${k3s_version}"
 
 wait_lb
 
-until (curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=$K3S_VERSION K3S_TOKEN=${k3s_token} K3S_URL=https://${k3s_url}:6443 sh -s - $INSTALL_PARAMS); do
+until (curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=$K3S_VERSION K3S_TOKEN=${k3s_token} K3S_URL=https://${k3s_url}:6443 sh -s server - $INSTALL_PARAMS); do
   echo 'k3s did not install correctly'
   sleep 2
 done

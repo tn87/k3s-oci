@@ -14,7 +14,7 @@ resource "oci_core_instance_pool" "k3s_workers" {
   instance_configuration_id = oci_core_instance_configuration.k3s_worker_template.id
 
   placement_configurations {
-    availability_domain = var.availability_domain
+    availability_domain = var.availability_domain2
     primary_subnet_id   = oci_core_subnet.default_oci_core_subnet10.id
     fault_domains       = var.fault_domains
   }
@@ -38,7 +38,7 @@ resource "oci_core_instance" "k3s_extra_worker_node" {
   ]
 
   compartment_id      = var.compartment_ocid
-  availability_domain = var.availability_domain
+  availability_domain = var.availability_domain2
   display_name        = "K3s extra worker node"
 
   agent_config {
@@ -61,14 +61,14 @@ resource "oci_core_instance" "k3s_extra_worker_node" {
     }
   }
 
-  shape = var.compute_shape
+  shape = var.compute_shape2
   shape_config {
-    memory_in_gbs = "6"
+    memory_in_gbs = "1"
     ocpus         = "1"
   }
 
   source_details {
-    source_id   = var.os_image_id
+    source_id   = var.os_image_id2
     source_type = "image"
   }
 

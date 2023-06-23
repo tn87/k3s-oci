@@ -35,7 +35,7 @@ resource "oci_core_instance_configuration" "k3s_server_template" {
         }
       }
 
-      availability_domain = var.availability_domain
+      availability_domain = var.availability_domain1
       compartment_id      = var.compartment_ocid
 
       create_vnic_details {
@@ -51,14 +51,15 @@ resource "oci_core_instance_configuration" "k3s_server_template" {
         "user_data"           = data.cloudinit_config.k3s_server_tpl.rendered
       }
 
-      shape = var.compute_shape
+      shape = var.compute_shape1
       shape_config {
-        memory_in_gbs = "6"
-        ocpus         = "1"
+        memory_in_gbs = "24"
+        ocpus         = "4"
       }
       source_details {
-        image_id    = var.os_image_id
+        image_id    = var.os_image_id1
         source_type = "image"
+        boot_volume_size_in_gbs = "200"
       }
     }
   }
@@ -101,7 +102,7 @@ resource "oci_core_instance_configuration" "k3s_worker_template" {
         }
       }
 
-      availability_domain = var.availability_domain
+      availability_domain = var.availability_domain2
       compartment_id      = var.compartment_ocid
 
       create_vnic_details {
@@ -117,13 +118,13 @@ resource "oci_core_instance_configuration" "k3s_worker_template" {
         "user_data"           = data.cloudinit_config.k3s_worker_tpl.rendered
       }
 
-      shape = var.compute_shape
+      shape = var.compute_shape2
       shape_config {
-        memory_in_gbs = "6"
+        memory_in_gbs = "1"
         ocpus         = "1"
       }
       source_details {
-        image_id    = var.os_image_id
+        image_id    = var.os_image_id2
         source_type = "image"
       }
     }

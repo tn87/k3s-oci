@@ -2,7 +2,11 @@ variable "region" {
   type = string
 }
 
-variable "availability_domain" {
+variable "availability_domain1" {
+  type = string
+}
+
+variable "availability_domain2" {
   type = string
 }
 
@@ -22,13 +26,16 @@ variable "cluster_name" {
   type = string
 }
 
-variable "os_image_id" {
+variable "os_image_id1" {
+  type = string
+}
+
+variable "os_image_id2" {
   type = string
 }
 
 variable "k3s_version" {
   type    = string
-  default = "latest"
 }
 
 variable "k3s_subnet" {
@@ -47,9 +54,14 @@ variable "public_key_path" {
   description = "Path to your public workstation SSH key"
 }
 
-variable "compute_shape" {
+variable "compute_shape1" {
   type    = string
   default = "VM.Standard.A1.Flex"
+}
+
+variable "compute_shape2" {
+  type    = string
+  default = "VM.Standard.E2.1.Micro"
 }
 
 variable "public_lb_shape" {
@@ -205,7 +217,7 @@ variable "certmanager_email_address" {
 
 variable "install_longhorn" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "longhorn_release" {
@@ -215,7 +227,7 @@ variable "longhorn_release" {
 
 variable "install_argocd" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "argocd_release" {

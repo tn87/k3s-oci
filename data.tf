@@ -22,7 +22,7 @@ data "cloudinit_config" "k3s_server_tpl" {
       certmanager_release               = var.certmanager_release,
       certmanager_email_address         = var.certmanager_email_address,
       compartment_ocid                  = var.compartment_ocid,
-      availability_domain               = var.availability_domain,
+      availability_domain               = var.availability_domain1,
       k3s_url                           = oci_load_balancer_load_balancer.k3s_load_balancer.ip_address_details[0].ip_address,
       k3s_tls_san                       = oci_load_balancer_load_balancer.k3s_load_balancer.ip_address_details[0].ip_address,
       expose_kubeapi                    = var.expose_kubeapi,
@@ -49,7 +49,7 @@ data "cloudinit_config" "k3s_worker_tpl" {
       k3s_version                       = var.k3s_version,
       k3s_subnet                        = var.k3s_subnet,
       k3s_token                         = random_password.k3s_token.result,
-      is_k3s_server                     = false,
+      is_k3s_server                     = true,
       disable_ingress                   = var.disable_ingress,
       k3s_url                           = oci_load_balancer_load_balancer.k3s_load_balancer.ip_address_details[0].ip_address,
       http_lb_port                      = var.http_lb_port,
@@ -57,6 +57,7 @@ data "cloudinit_config" "k3s_worker_tpl" {
       https_lb_port                     = var.https_lb_port,
       ingress_controller_http_nodeport  = var.ingress_controller_http_nodeport,
       ingress_controller_https_nodeport = var.ingress_controller_https_nodeport,
+      availability_domain               = var.availability_domain2,
     })
   }
 }
